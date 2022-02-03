@@ -1,12 +1,12 @@
-package edu.kis.vh.nursery.list;
+package edu.kis.vh.nursery.int_data_structure;
 
 /**
  * The IntLinkedList class implements a linked list of integers
  */
-public class IntLinkedList {
+public class IntLinkedList implements IntDataStructure {
 
 	private Node last;
-	private int i;
+	private int i = 0;
 
 	/**
 	 * Pushes an element onto the list
@@ -20,6 +20,7 @@ public class IntLinkedList {
 			last.getNext().setPrev(last);
 			last = last.getNext();
 		}
+		this.i++;
 	}
 
 	/**
@@ -39,9 +40,10 @@ public class IntLinkedList {
 	/**
 	 * Returns the value of the element at the end of the list
 	 */
+	@Override
 	public int top() {
 		if (isEmpty())
-			return -1;
+			return ERROR_VALUE;
 		return last.getValue();
 	}
 
@@ -50,10 +52,16 @@ public class IntLinkedList {
 	 */
 	public int pop() {
 		if (isEmpty())
-			return -1;
+			return ERROR_VALUE;
 		int ret = last.getValue();
 		last = last.getPrev();
+		i--;
 		return ret;
+	}
+
+	@Override
+	public int getTotal() {
+		return i;
 	}
 
 }
